@@ -1,0 +1,80 @@
+<!doctype html>
+
+    
+<head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Admin - Login</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     
+       {% include "TheClickCmsAdminBundle:Layers:cssjs.html.twig" %}
+
+           <script src="{{asset('bundles/theclickcmsadmin/js/login.js')}}"></script>
+    
+    </head>
+
+    <body class="login-page">
+        
+        <script>
+	        var theme = $.cookie('protonTheme') || 'default';
+	        $('body').removeClass (function (index, css) {
+	            return (css.match (/\btheme-\S+/g) || []).join(' ');
+	        });
+	        if (theme !== 'default') $('body').addClass(theme);
+        </script>
+     
+
+        <form role="form" id='formLogin' action='{{path('hacerLogin')}}' method="post" >
+            <section class="wrapper scrollable animated fadeInDown">
+                <section class="panel panel-default">
+                    <div class="panel-heading">
+                        
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="welcome-text">
+                               Bienvenido / Panel de Admin 
+                            </span>
+                            
+                            
+                        </li>
+                        <li class="list-group-item">
+                            <span class="login-text">
+                             
+                            </span>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control input-lg" name="usuario" id="usuario" placeholder="Usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control input-lg" name="password" id="password" placeholder="Password">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="panel-footer">
+                        <button class="btn btn-lg btn-success" id="butLogin"> LOGIN</button>
+                        <br>
+                        
+                    
+                            
+                        
+                            <span class="welcome-text"  id="respuesta">
+                                
+                            
+                                
+                                
+                            </span>
+                       
+                  
+                    </div>
+                        
+                        
+                        
+                </section>
+            </section>
+        </form>
+    </body>
+</html>

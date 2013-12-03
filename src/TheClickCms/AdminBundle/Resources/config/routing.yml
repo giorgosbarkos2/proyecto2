@@ -1,0 +1,27 @@
+the_click_cms_admin_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: TheClickCmsAdminBundle:Default:index }
+
+
+hacerLogin:
+  pattern:  /admin/hacerLogin
+  defaults: { _controller: TheClickCmsAdminBundle:Default:hacerLogin }    
+  
+  
+login:
+    pattern:  /admin/login
+    defaults: { _controller: TheClickCmsAdminBundle:Default:login }    
+    
+
+logout:
+   pattern:  /admin/logout
+   defaults: { _controller: TheClickCmsAdminBundle:Default:logout  }  
+  
+
+
+
+principal:
+   pattern:  /admin/principal
+   defaults: { _controller: TheClickCmsAdminBundle:Default:principal }    
+  
+    

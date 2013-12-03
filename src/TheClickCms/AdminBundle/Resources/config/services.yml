@@ -1,0 +1,7 @@
+parameters:
+#    the_click_cms_admin.example.class: TheClickCms\AdminBundle\Example
+
+services:
+#    the_click_cms_admin.example:
+#        class: %the_click_cms_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
