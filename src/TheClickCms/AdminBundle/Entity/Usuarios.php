@@ -92,7 +92,7 @@ class Usuarios
     
     
      /**
-     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Actualizaciones", mappedBy="usuarios" , cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Actualizacion", mappedBy="usuarios" , cascade={"remove"})
      */
     
     
