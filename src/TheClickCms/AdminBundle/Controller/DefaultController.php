@@ -61,6 +61,9 @@ class DefaultController extends Controller {
     }
     
     
+    
+    
+    
       public  function logoutAction(){
             
             return new Response('logout');

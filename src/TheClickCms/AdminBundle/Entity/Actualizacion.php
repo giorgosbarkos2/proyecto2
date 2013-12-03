@@ -44,7 +44,22 @@ class Actualizacion
     
     
     
+    
+    
     private $descripcionCorta;
+    
+    
+    
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="version", type="text" ,nullable=true )
+     */
+    
+    
+    
+    
+    private $version;
     
    
     
@@ -73,6 +88,18 @@ class Actualizacion
  
     
     private $archivos;
+    
+    
+    
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="TheClickCms\AdminBundle\Entity\Usuarios", inversedBy="fotos")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * 
+     */
+    
+    private $usuario;
+    
     
     
     

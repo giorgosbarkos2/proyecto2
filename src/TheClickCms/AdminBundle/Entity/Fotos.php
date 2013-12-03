@@ -22,13 +22,19 @@ class Fotos
     private $id;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
+    
+        
+     /**
+     * @ORM\ManyToOne(targetEntity="TheClickCms\AdminBundle\Entity\Usuarios", inversedBy="fotos")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+      * 
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    
+    private $usuario;
+    
+    
+    
+    
+    
+    
 }
