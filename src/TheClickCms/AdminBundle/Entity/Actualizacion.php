@@ -62,6 +62,8 @@ class Actualizacion
     
    
     
+    
+    
     /**
      * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Archivos", mappedBy="productos" , cascade={"remove"})
      */

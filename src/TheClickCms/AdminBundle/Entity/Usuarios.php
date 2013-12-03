@@ -22,13 +22,31 @@ class Usuarios
     private $id;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
+  
+    
+    
+    
+    
+    
+    
+    
+    
+     /**
+     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Actualizaciones", mappedBy="usuarios" , cascade={"remove"})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    
+    
+      private $actualizaciones;
+    
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Fotos", mappedBy="usuarios" , cascade={"remove"})
+     */
+    
+     private $fotos;
+    
+    
+    
+    
 }
