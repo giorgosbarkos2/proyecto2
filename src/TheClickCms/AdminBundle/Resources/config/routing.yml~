@@ -26,5 +26,5 @@ vistaFormularioUsuario:
     defaults: {_controller: TheClickCmsAdminBundle:Default:vistaFormularioUsuario }
 
 guardarUsuario:
-    pattern: /admin/guardarUsuario
-    defaults: {_controller: TheClickCmsAdminBundle:Default:guardarUsuario}
+	pattern: /admin/guardarUsuario
+	defaults: {_controller: TheClickCmsAdminBundle:Default:guardarUsuario}

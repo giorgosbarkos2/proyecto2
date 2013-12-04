@@ -10,7 +10,7 @@
 	</head>
 	<body>
 	{# Formulario ingresar usuario. #}
-	<form action="{{ path('guardarUsuario') }}" method="POST">
+	<form action="{{ path('') }}" method="POST">
 		<fieldset>
 			<legend>Administracion / Usuario: </legend>
 		</fieldset>

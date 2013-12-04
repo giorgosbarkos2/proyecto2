@@ -94,7 +94,7 @@ class DefaultController extends Controller {
 		$em->persist($usuario);
 		$em->flush();
 
-		return new response('Datos guardados');
+		return n
 	}
 
 }
