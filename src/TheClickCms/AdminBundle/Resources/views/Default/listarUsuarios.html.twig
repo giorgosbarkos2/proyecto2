@@ -1,0 +1,42 @@
+{# Listar Editar y Eliminar Usuarios #}
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Admin - Login</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		{% include "TheClickCmsAdminBundle:Layers:cssJs.html.twig" %}
+		<script src="{{asset('bundles/theclickcmsadmin/js/login.js')}}"></script>
+	</head>
+	<body>
+	{% block listarusuario %}
+		<table class="table">
+			<thead>
+				<th>Pais</th>
+				<th>Detalle</th>
+				<th>Nombre</th>
+				<th>Email</th>
+				<th>Cargo</th>
+				<th>Empresa</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+			</thead>
+			<tbody>
+				{% for usuario in usuario %}
+				<tr>
+					<td>{{usuario.pais}}</td>
+					<td>{{usuario.detalle}}</td>
+					<td>{{usuario.nombre}}</td>
+					<td>{{usuario.email}}</td>
+					<td>{{usuario.cargo}}</td>
+					<td>{{usuario.empresa}}</td>
+					<td><a href="#" class="btn btn-primary"> Editar </a></td>
+					<td><a href="#" class="btn btn-danger"> Eliminar </a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}
+	</body>
+</html>

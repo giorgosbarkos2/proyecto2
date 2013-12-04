@@ -97,4 +97,12 @@ class DefaultController extends Controller {
 		return new response('Datos guardados');
 	}
 
+	/* Mostrar usuarios de la base de datos */
+
+	public function listarUsuariosAction(){
+		$em = $this->getDoctrine()->getManager();
+		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->findAll();
+		return $this->render('TheClickCmsAdminBundle:Default:listarUsuarios.html.twig', array('usuario' => $usuario));
+	}
+
 }
