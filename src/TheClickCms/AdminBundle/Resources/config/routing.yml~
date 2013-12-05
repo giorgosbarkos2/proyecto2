@@ -31,4 +31,12 @@ guardarUsuario:
 
 listarUsuarios:
     pattern: /admin/listarUsuarios
-    defaults: {_controller: TheClickCmsAdminBundle:Defa}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:listarUsuarios}
+
+vistaEditarUsuario:
+    pattern: /admin/vistaEditarUsuario/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:vistaEditarUsuario}
+
+guardarFormularioEditarUsuario:
+    pattern: /admin/guardarFormularioEditarUsuario
+    defaults:{_controller: TheClickCmsAdminBundle:Default:guardarFormularioEditarUsuario}

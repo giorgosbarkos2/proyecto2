@@ -101,8 +101,42 @@ class DefaultController extends Controller {
 
 	public function listarUsuariosAction(){
 		$em = $this->getDoctrine()->getManager();
-		$usuario = $em->getRepository('TheClickCmsAdminBundle:Uusuarios')->findAll();
+		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->findAll();
 		return $this->render('TheClickCmsAdminBundle:Default:listarUsuarios.html.twig', array('usuario' => $usuario));
 	}
 
+	/* Vista editar usuario */
+
+	public function vistaEditarUsuarioAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->find($id);
+		return $this->render('TheClickCmsAdminBundle:Default:editarUsuario.html.twig', array('usuario'=>$usuario));
+	}
+
+	/* Controlador para guardar el formulario editar */
+	public function guardarFormularioEditarUsuarioAction(Request $data){
+		//Recibiendo los parametros del formulario editar.
+		$id = $data->request->get('id');
+		$pais = $data->request->get('pais');
+		$detalle = $data->request->get('detalle');
+		$nombre = $data->request->get('nombre');
+		$correo = $data->request->get('correo');
+		$cargo = $data->request->get('cargo');
+		$empresa = $data->request->get('empresa');
+
+		//Conectamos con la base de datos.
+		$em = $this->getDoctrine()->getManager();
+		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->findOneBy(array('id'=>$id));
+		//Seteando los valores que vienen del formulario editar.
+		$usuario->setPais($pais);
+		$usuario->setDetalle($detalle);
+		$usuario->setNombre($nombre);
+		$usuario->setEmail($correo);
+		$usuario->setCargo($cargo);
+		$usuario->setEmpresa($empresa);
+
+		$em->merge($usuario);
+		$em->flush();
+		return new response('Usuario Editado');
+	}
 }

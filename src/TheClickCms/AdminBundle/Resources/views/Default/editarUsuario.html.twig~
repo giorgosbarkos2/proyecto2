@@ -10,16 +10,14 @@
 	</head>
 	<body>
 	{# Formulario ingresar usuario. #}
-	<form action="{{ path('guardarUsuario') }}" method="POST">
+	<form action="{{path('guardarFormularioEditarUsuario')}}" method="POST">
 		<fieldset>
 			<legend>Administracion / Usuario: </legend>
 		</fieldset>
-		<!--
-		<label for="usuario">Ingrese usuario:</label>
-		<input name="usuario" type="text" class="form-control"/>
-		-->
+		<input name="id" value="{{usuario.id}}" type="text" />
 		<label for="pais"> Selecciones pais:</label>
 		<select name="pais" class="form-control">
+			<option vale="{{usuario.pais}}">{{usuario.pais}}</option>
 			<option value="AF">Afganistán</option>
 			<option value="AL">Albania</option>
 			<option value="DE">Alemania</option>
@@ -256,15 +254,15 @@
 			<option value="ZW">Zimbabue</option>
 		</select>
 		<label for="detalle"> Detalle:</label>
-		<textarea name="detalle" rows="8" cols="40" class="form-control"></textarea>
+		<textarea name="detalle" rows="8" cols="40" class="form-control">{{usuario.detalle}}</textarea>
 		<label for="nombre"> Nombre Completo: </label>
-		<input name="nombre" type="text" class="form-control" />
+		<input name="nombre" type="text" class="form-control" value="{{usuario.nombre}}"/>
 		<label for="correo">Correo electronico:</label>
-		<input type="text" name="correo" class="form-control" />
+		<input type="text" name="correo" class="form-control" value="{{usuario.email}}"/>
 		<label for="cargo">Cargo del usuario: </label>
-		<input type="text" name="cargo" class="form-control" />
+		<input type="text" name="cargo" class="form-control" value="{{usuario.cargo}}"/>
 		<label for="empresa">Empresa a la que pertenece:</label>
-		<input type="text" name="empresa" class="form-control" />
+		<input type="text" name="empresa" class="form-control" value="{{usuario.empresa}}"/>
 		<button type="submit" class="btn btn-primary">Guardar</button>
 	</form>
 	</body>
