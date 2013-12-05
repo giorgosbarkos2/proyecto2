@@ -16,44 +16,44 @@ class DefaultController extends Controller {
     public function indexAction($name) {
         return $this->render('TheClickCmsAdminBundle:Default:index.html.twig', array('name' => $name));
     }
-    
-    
-    
-        
+
+
+
+
     public function vistaAgregarEmpresaAction(){
-        
+
         return $this->render('TheClickCmsAdminBundle:Default:empresaAgregar.html.twig');
-        
-        
+
+
     }
-    
+
     public function guardarEmpresaAction(Request $request){
-        
+
         $pais = $request->request->get('pais');
         $detalle = $request->request->get('detalle');
         $nombre = $request->request->get('nombre');
         $correo = $request->request->get('correo');
-        
+
         $em = $this->getDoctrine()->getManager();
-        
-        
+
+
         $empresa = new Empresa();
-        
+
         $empresa->setCorreo($correo);
         $empresa->setNombre($nombre);
         $empresa->setDetalle($detalle);
         $empresa->setPais($pais);
         $empresa->setFecha(new \DateTime());
-        
+
         $em->persist($empresa);
         $em->flush();
-        
-        
+
+
         return new Response('guardado');
     }
-    
-    
-    
+
+
+
 
     public function loginAction() {
 
@@ -105,17 +105,17 @@ class DefaultController extends Controller {
       public  function logoutAction(){
 
            $session = $this->getRequest()->getSession();
-           
+
            $session->remove('usuario');
            $session->remove('password');
-           
+
            return   $this->redirect('login');
         }
 	/* Mustra el formulario agregar usuario. */
 	public function vistaFormularioUsuarioAction(){
                            $em = $this->getDoctrine()->getManager();
                            $empresas = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findAll();
-                           
+
 	           return $this->render('TheClickCmsAdminBundle:Default:agregarUsuarios.html.twig' , array('empresa'  => $empresas));
 	}
 
@@ -129,11 +129,11 @@ class DefaultController extends Controller {
 		$correo = $data->request->get('correo');
 		$cargo = $data->request->get('cargo');
 		$empresaid = $data->request->get('empresa');
-                
+
                  //return new Response('empresa id' . $empresaid );
-                                
+
                                 $em = $this->getDoctrine()->getManager();
-                                
+
                                  $empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findOneBy(array('id' => $empresaid));
 		//Creamos una instancia de la clase usuario.
 		$usuario = new Usuarios();
@@ -145,25 +145,25 @@ class DefaultController extends Controller {
 		$usuario->setCargo($cargo);
 		$usuario->setEmpresa($empresa);
                                 $usuario->setFecha(new \DateTime());
-                                
-                                
-                               
-                                
-                                
-                                
-                                
-                       
-                     
-                                
+
+
+
+
+
+
+
+
+
+
 
 		//coneccion a la base de datos para ingresar los datos.
 		$em = $this->getDoctrine()->getManager();
                                 $em->persist($empresa);
 		$em->persist($usuario);
 		$em->flush();
-                
-                
-                    
+
+
+
                                return   $this->redirect('listarUsuarios');
 
 		return new response('Datos guardados');
@@ -217,6 +217,51 @@ class DefaultController extends Controller {
 		$em = $this->getDoctrine()->getManager();
 		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->find($id);
 		$em->remove($usuario);
+		$em->flush();
+		return new Response('Usuario Eliminado');
+	}
+	/* Controlador para la vista listar empresas. */
+	public function listarEmpresasAction(){
+		$em = $this->getDoctrine()->getManager();
+		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findAll();
+		return $this->render('TheClickCmsAdminBundle:Default:listarEmpresa.html.twig', array('empresa'=>$empresa));
+	}
+
+	/* Controlador para cargar la vista editar empresa */
+	public function vistaEditarEmpresaAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->find($id);
+		return $this->render('TheClickCmsAdminBundle:Default:editarEmpresa.html.twig', array('empresa'=>$empresa));
+	}
+
+	/* Controlador que guarda el formulario editar empresa */
+	public function guardarEditarEmpresaAction(Request $data){
+		$id = $data->request->get('id');
+		$pais = $data->request->get('pais');
+		$detalle = $data->request->get('detalle');
+		$nombre = $data->request->get('nombre');
+		$correo = $data->request->get('correo');
+
+		$em = $this->getDoctrine()->getManager();
+		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findOneBy(array('id'=>$id));
+
+		$empresa->setPais($pais);
+		$empresa->setDetalle($detalle);
+		$empresa->setNombre($nombre);
+		$empresa->setCorreo($correo);
+
+		$em->merge($empresa);
+		$em->flush();
+
+		return new response('Usuario Editado');
+	}
+
+	/* Controlador para eliminar empresa */
+	public function eliminarEmpresaAction($id){
+		//Conectar con la base de datos.
+		$em = $this->getDoctrine()->getManager();
+		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->find($id);
+		$em->remove($empresa);
 		$em->flush();
 		return new Response('Usuario Eliminado');
 	}

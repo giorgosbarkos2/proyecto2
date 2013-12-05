@@ -15,15 +15,30 @@ login:
 
 
 guardarEmpresa:
-   pattern:  /admin/guardarEmpresa
-   defaults: { _controller: TheClickCmsAdminBundle:Default:guardarEmpresa }
-   
+    pattern:  /admin/guardarEmpresa
+    defaults: { _controller: TheClickCmsAdminBundle:Default:guardarEmpresa }
+
 
 vistaAgregarEmpresa:
-  pattern:  /admin/vistaAgregarEmpresa
-  defaults: { _controller: TheClickCmsAdminBundle:Default:vistaAgregarEmpresa  }
-  
-  
+   pattern:  /admin/vistaAgregarEmpresa
+   defaults: { _controller: TheClickCmsAdminBundle:Default:vistaAgregarEmpresa  }
+
+listarEmpresas:
+    pattern: /admin/listarEmpresas
+    defaults: {_controller: TheClickCmsAdminBundle:Default:listarEmpresas }
+
+vistaEditarEmpresa:
+    pattern: /admin/vistaEditarEmpresa/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:vistaEditarEmpresa}
+
+guardarEditarEmpresa:
+    pattern: /admin/guardarEditarEmpresa
+    defaults: {_controller: TheClickCmsAdminBundle:Default:guardarEditarEmpresa}
+
+eliminarEmpresa:
+    pattern: /admin/eliminarEmpresa/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarEmpresa}
+
 logout:
     pattern:  /admin/logout
     defaults: { _controller: TheClickCmsAdminBundle:Default:logout  }
