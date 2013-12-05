@@ -1,0 +1,3 @@
+the_click_cms_upload_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: TheClickCmsUploadBundle:Default:index }

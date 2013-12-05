@@ -7,12 +7,53 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use TheClickCms\AdminBundle\Entity\Usuarios;
+use TheClickCms\AdminBundle\Entity\Empresa;
+
+
 
 class DefaultController extends Controller {
 
     public function indexAction($name) {
         return $this->render('TheClickCmsAdminBundle:Default:index.html.twig', array('name' => $name));
     }
+    
+    
+    
+        
+    public function vistaAgregarEmpresaAction(){
+        
+        return $this->render('TheClickCmsAdminBundle:Default:empresaAgregar.html.twig');
+        
+        
+    }
+    
+    public function guardarEmpresaAction(Request $request){
+        
+        $pais = $request->request->get('pais');
+        $detalle = $request->request->get('detalle');
+        $nombre = $request->request->get('nombre');
+        $correo = $request->request->get('correo');
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        $empresa = new Empresa();
+        
+        $empresa->setCorreo($correo);
+        $empresa->setNombre($nombre);
+        $empresa->setDetalle($detalle);
+        $empresa->setPais($pais);
+        $empresa->setFecha(new \DateTime());
+        
+        $em->persist($empresa);
+        $em->flush();
+        
+        
+        return new Response('guardado');
+    }
+    
+    
+    
 
     public function loginAction() {
 
@@ -63,11 +104,19 @@ class DefaultController extends Controller {
 
       public  function logoutAction(){
 
-            return new Response('logout');
+           $session = $this->getRequest()->getSession();
+           
+           $session->remove('usuario');
+           $session->remove('password');
+           
+           return   $this->redirect('login');
         }
 	/* Mustra el formulario agregar usuario. */
 	public function vistaFormularioUsuarioAction(){
-		return $this->render('TheClickCmsAdminBundle:Default:agregarUsuarios.html.twig');
+                           $em = $this->getDoctrine()->getManager();
+                           $empresas = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findAll();
+                           
+	           return $this->render('TheClickCmsAdminBundle:Default:agregarUsuarios.html.twig' , array('empresa'  => $empresas));
 	}
 
 	/* Controlador que guarda los datos ingresados por el usuarios en el formulario anterior. */
@@ -79,7 +128,13 @@ class DefaultController extends Controller {
 		$nombre = $data->request->get('nombre');
 		$correo = $data->request->get('correo');
 		$cargo = $data->request->get('cargo');
-		$empresa = $data->request->get('empresa');
+		$empresaid = $data->request->get('empresa');
+                
+                 //return new Response('empresa id' . $empresaid );
+                                
+                                $em = $this->getDoctrine()->getManager();
+                                
+                                 $empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findOneBy(array('id' => $empresaid));
 		//Creamos una instancia de la clase usuario.
 		$usuario = new Usuarios();
 		//Seteamos los valores ingresados por el usuario
@@ -89,10 +144,27 @@ class DefaultController extends Controller {
 		$usuario->setEmail($correo);
 		$usuario->setCargo($cargo);
 		$usuario->setEmpresa($empresa);
+                                $usuario->setFecha(new \DateTime());
+                                
+                                
+                               
+                                
+                                
+                                
+                                
+                       
+                     
+                                
+
 		//coneccion a la base de datos para ingresar los datos.
 		$em = $this->getDoctrine()->getManager();
+                                $em->persist($empresa);
 		$em->persist($usuario);
 		$em->flush();
+                
+                
+                    
+                               return   $this->redirect('listarUsuarios');
 
 		return new response('Datos guardados');
 	}

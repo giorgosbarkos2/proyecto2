@@ -1,0 +1,168 @@
+<!doctype html>
+
+    
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Admin</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      
+   {% include "TheClickCmsAdminBundle:Layers:cssprincipal.html.twig" %}
+
+        <!-- Common Scripts: -->
+
+    </head>
+
+    <body class="dashboard-page">
+        
+        <script>
+	
+        </script>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+    
+           {% include "TheClickCmsAdminBundle:Layers:menu.html.twig" %}
+        
+        
+        
+        
+       
+            <!--- aca  van los form -->
+                 <section style="color:#ffff;width:900px;height:900px; position: relative; margin-left: 20%; ">
+     
+              
+{% include "TheClickCmsAdminBundle:Layers:cssUpload.html.twig" %}
+
+
+
+<h5>Sube tus imagenes de las propiedades con formato jpg , png</h5>
+<br>
+<button style="margin-top:30px;" onclick="window.location.href='VistaFormularioPropiedad'">Agregar otra propiedad </button>
+<div style="width: 800px; height: 300px; margin-top: -60px;">
+
+
+<form  method="post" action="">
+	<div id="uploader" style="width:900px;height:200px;margin-top: 80px;">
+		
+	
+</form>
+<script type="text/javascript">
+    
+$('document').ready(function() {
+    
+
+$(function() {
+	$("#uploader").plupload({
+		// General settings
+               
+               
+		runtimes : 'html5,flash',
+		url : 'uploadProductosImg',
+		max_file_size : '1000mb',
+		max_file_count: 20, // user can add no more then 20 files at a time
+		chunk_size : '3mb',
+                                 autostart : true,
+		rename: true,
+		multiple_queues : true,
+
+		
+		// Rename files by clicking on their titles
+		rename: true,
+		
+		// Sort files
+		sortable: true,
+
+		// Specify what files to browse for
+		filters : [
+			{title : "Image files", extensions : "exe,rar,zip"}
+			
+		],
+
+		// Flash settings
+		flash_swf_url : "{{asset('bundles/benchupload/js/plupload.flash.swf')}}",
+
+		// Silverlight settings
+		silverlight_xap_url : "{{asset('bundles/benchupload/js/plupload.silverlight.xap')}}",
+	});
+
+
+
+	// Client side form validation
+	$('#uploader').submit(function(e) {
+            
+                var uploader = $('#uploader').plupload('getUploader');
+               
+               
+
+        // Files in queue upload them first
+        if (uploader.files.length > 0) {
+            // When all files are uploaded submit form
+            uploader.bind('StateChanged', function() {
+                if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+                    $('form')[0].submit();
+               
+                }
+            });
+                
+            uploader.start();
+             
+      
+        } else
+            alert('You must at least upload one file.');
+
+
+        return false;
+    });
+	 
+
+});
+
+});
+
+
+</script>
+
+        
+        
+        </section>
+
+
+
+                
+
+            
+              <!--- aca  van los form -->
+              
+              
+              
+        </section>
+
+        <div id="quickLaunchModal" tabindex="-1" role="dialog" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><i class="icon-plus"></i><span>EDIT QUICK LAUNCH ITEMS</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Edit quick launch items below:</p>
+                        <input type="text" placeholder="Placeholder Text" value="Graphs,Calendar,Maps,Cloud,Conference" data-role="tagsinput" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-lg btn-success" data-dismiss="modal">SAVE SELECTION</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        
+    
+    </body>
+</html>

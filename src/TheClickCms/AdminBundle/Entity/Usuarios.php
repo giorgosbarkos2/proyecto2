@@ -77,47 +77,35 @@ class Usuarios
     
     private $cargo;
     
+   
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="empresa", type="text" ,nullable=true )
+    
+    
+    
+   /** @ORM\Column(type="datetime") */
+    
+    
+    
+    private $fecha;
+    
+    
+
+  
+  
+     
+     
+      /**
+     * @ORM\ManyToOne(targetEntity="TheClickCms\AdminBundle\Entity\Empresa", inversedBy="usuarios")
+     * @ORM\JoinColumn(name="empresa_id", referencedColumnName="id")
      */
-    
     
     
     private $empresa;
     
- 
-    
-    
-     /**
-     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Actualizacion", mappedBy="usuarios" , cascade={"remove"})
-     */
-    
-    
-      private $actualizaciones;
     
     
     
-    /**
-     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Fotos", mappedBy="usuarios" , cascade={"remove"})
-     */
-    
-     private $fotos;
-    
-    
-    
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->actualizaciones = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->fotos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Get id
      *
@@ -244,12 +232,35 @@ class Usuarios
     }
 
     /**
-     * Set empresa
+     * Set fecha
      *
-     * @param string $empresa
+     * @param \DateTime $fecha
      * @return Usuarios
      */
-    public function setEmpresa($empresa)
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set empresa
+     *
+     * @param \TheClickCms\AdminBundle\Entity\Empresa $empresa
+     * @return Usuarios
+     */
+    public function setEmpresa(\TheClickCms\AdminBundle\Entity\Empresa $empresa = null)
     {
         $this->empresa = $empresa;
     
@@ -259,76 +270,10 @@ class Usuarios
     /**
      * Get empresa
      *
-     * @return string 
+     * @return \TheClickCms\AdminBundle\Entity\Empresa 
      */
     public function getEmpresa()
     {
         return $this->empresa;
-    }
-
-    /**
-     * Add actualizaciones
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Actualizaciones $actualizaciones
-     * @return Usuarios
-     */
-    public function addActualizacione(\TheClickCms\AdminBundle\Entity\Actualizaciones $actualizaciones)
-    {
-        $this->actualizaciones[] = $actualizaciones;
-    
-        return $this;
-    }
-
-    /**
-     * Remove actualizaciones
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Actualizaciones $actualizaciones
-     */
-    public function removeActualizacione(\TheClickCms\AdminBundle\Entity\Actualizaciones $actualizaciones)
-    {
-        $this->actualizaciones->removeElement($actualizaciones);
-    }
-
-    /**
-     * Get actualizaciones
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getActualizaciones()
-    {
-        return $this->actualizaciones;
-    }
-
-    /**
-     * Add fotos
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Fotos $fotos
-     * @return Usuarios
-     */
-    public function addFoto(\TheClickCms\AdminBundle\Entity\Fotos $fotos)
-    {
-        $this->fotos[] = $fotos;
-    
-        return $this;
-    }
-
-    /**
-     * Remove fotos
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Fotos $fotos
-     */
-    public function removeFoto(\TheClickCms\AdminBundle\Entity\Fotos $fotos)
-    {
-        $this->fotos->removeElement($fotos);
-    }
-
-    /**
-     * Get fotos
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFotos()
-    {
-        return $this->fotos;
     }
 }

@@ -13,6 +13,17 @@ login:
     defaults: { _controller: TheClickCmsAdminBundle:Default:login }
 
 
+
+guardarEmpresa:
+   pattern:  /admin/guardarEmpresa
+   defaults: { _controller: TheClickCmsAdminBundle:Default:guardarEmpresa }
+   
+
+vistaAgregarEmpresa:
+  pattern:  /admin/vistaAgregarEmpresa
+  defaults: { _controller: TheClickCmsAdminBundle:Default:vistaAgregarEmpresa  }
+  
+  
 logout:
     pattern:  /admin/logout
     defaults: { _controller: TheClickCmsAdminBundle:Default:logout  }

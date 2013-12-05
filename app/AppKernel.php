@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new TheClickCms\AdminBundle\TheClickCmsAdminBundle(),
+            new TheClickCms\UploadBundle\TheClickCmsUploadBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
