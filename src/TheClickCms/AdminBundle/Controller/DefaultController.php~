@@ -123,7 +123,6 @@ class DefaultController extends Controller {
 		$correo = $data->request->get('correo');
 		$cargo = $data->request->get('cargo');
 		$empresa = $data->request->get('empresa');
-
 		//Conectamos con la base de datos.
 		$em = $this->getDoctrine()->getManager();
 		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->findOneBy(array('id'=>$id));
@@ -134,9 +133,20 @@ class DefaultController extends Controller {
 		$usuario->setEmail($correo);
 		$usuario->setCargo($cargo);
 		$usuario->setEmpresa($empresa);
-
+		//Haciendo la edicion en la base de datos.
 		$em->merge($usuario);
 		$em->flush();
 		return new response('Usuario Editado');
+	}
+
+	/* Controlador para eliminar datos de la grilla */
+	public function eliminarUsuarioAction($id){
+	//Conectar con la base de datos.
+	$em = $this->getDoctrine()->getManager();
+	$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->find($id);
+	$em->remove($usuario);
+	$em->flush();
+	return new Response('Usuario Eliminado');
+
 	}
 }

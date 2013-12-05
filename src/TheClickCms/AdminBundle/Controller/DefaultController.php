@@ -138,4 +138,14 @@ class DefaultController extends Controller {
 		$em->flush();
 		return new response('Usuario Editado');
 	}
+
+	/* Controlador para eliminar datos de la grilla */
+	public function eliminarUsuarioAction($id){
+		//Conectar con la base de datos.
+		$em = $this->getDoctrine()->getManager();
+		$usuario = $em->getRepository('TheClickCmsAdminBundle:Usuarios')->find($id);
+		$em->remove($usuario);
+		$em->flush();
+		return new Response('Usuario Eliminado');
+	}
 }

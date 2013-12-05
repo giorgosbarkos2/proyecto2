@@ -40,3 +40,7 @@ vistaEditarUsuario:
 guardarFormularioEditarUsuario:
     pattern: /admin/guardarFormularioEditarUsuario
     defaults: {_controller: TheClickCmsAdminBundle:Default:guardarFormularioEditarUsuario}
+
+eliminarUsuario:
+    pattern: /admin/eliminarUsuario/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarUsuario}
