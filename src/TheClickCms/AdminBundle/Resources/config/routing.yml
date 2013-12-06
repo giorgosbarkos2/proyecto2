@@ -78,3 +78,7 @@ vistaAgregarActualizacion:
 guardarActualizacion:
     pattern: /admin/guardarActualizacion
     defaults: {_controller: TheClickCmsAdminBundle:Default:guardarActualizacion}
+
+listarActualizacion:
+    pattern: /admin/listarActualizacion
+    defaults: {_controller: TheClickCmsAdminBundle:Default:listarActualizacion}

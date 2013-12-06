@@ -254,6 +254,7 @@ class DefaultController extends Controller {
 		return $this->render('TheClickCmsAdminBundle:Default:agregarActualizacion.html.twig');
 	}
 
+	/* Controlador que guarda lo que viene del formulario agregar actualizacion */
 	public function guardarActualizacionAction(Request $data){
 		$detalle = $data->request->get('detalle');
 		$descripccioncorta = $data->request->get('descripcioncorta');
@@ -270,5 +271,12 @@ class DefaultController extends Controller {
 		$em->persist($actualizacion);
 		$em->flush();
 		return new response('Actualizacion Guardada');
+	}
+
+	/* Renderiza la vista de la grilla mostrar actualizaciones */
+	public function listarActualizacionAction(){
+		$em = $this->getDoctrine()->getManager();
+		$actualizacion = $em->getRepository('TheClickCmsAdminBundle:Actualizacion')->findAll();
+		return $this->render('TheClickCmsAdminBundle:Default:listarActualizacion.html.twig', array('actualizacion'=>$actualizacion));
 	}
 }
