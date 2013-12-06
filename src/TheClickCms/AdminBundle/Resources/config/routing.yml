@@ -70,3 +70,11 @@ guardarFormularioEditarUsuario:
 eliminarUsuario:
     pattern: /admin/eliminarUsuario/{id}
     defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarUsuario}
+
+vistaAgregarActualizacion:
+    pattern: /admin/vistaAgregarActualizacion
+    defaults: {_controller: TheClickCmsAdminBundle:Default:vistaAgregarActualizacion}
+
+guardarActualizacion:
+    pattern: /admin/guardarActualizacion
+    defaults: {_controller: TheClickCmsAdminBundle:Default:guardarActualizacion}

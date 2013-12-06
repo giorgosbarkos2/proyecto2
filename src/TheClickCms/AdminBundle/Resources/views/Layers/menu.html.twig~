@@ -88,7 +88,7 @@
 
 
                   <li>
-                    <a href="{{path('')}}">
+                    <a href="{{path('listarEmpresas')}}">
                         <i class="icon-list nav-icon"></i>
                         <span class="nav-text">
                        Empresas / Ver / Editar / Eliminar

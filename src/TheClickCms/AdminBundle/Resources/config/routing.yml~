@@ -38,6 +38,7 @@ guardarEditarEmpresa:
 eliminarEmpresa:
     pattern: /admin/eliminarEmpresa/{id}
     defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarEmpresa}
+
 logout:
     pattern:  /admin/logout
     defaults: { _controller: TheClickCmsAdminBundle:Default:logout  }
@@ -69,3 +70,11 @@ guardarFormularioEditarUsuario:
 eliminarUsuario:
     pattern: /admin/eliminarUsuario/{id}
     defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarUsuario}
+
+vistaAgregarActualizacion:
+    pattern: /admin/vistaAgregarActualizacion
+    defaults: {_controller: TheClickCmsAdminBundle:Default:vistaAgregarActualizacion}
+
+guardarActualizacion:
+    pattern: /admin/guardarActualizacion
+    defaults: }{}

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use TheClickCms\AdminBundle\Entity\Usuarios;
 use TheClickCms\AdminBundle\Entity\Empresa;
-
+use TheClickCms\AdminBundle\Entity\Actualizacion;
 
 
 class DefaultController extends Controller {
@@ -122,7 +122,6 @@ class DefaultController extends Controller {
 	/* Controlador que guarda los datos ingresados por el usuarios en el formulario anterior. */
 	public function guardarUsuarioAction(Request $data){
 		//Reciviendo los valores del formulario.
-		//$usuario = $data->request->get('usuario');
 		$pais = $data->request->get('pais');
 		$detalle =$data->request->get('detalle');
 		$nombre = $data->request->get('nombre');
@@ -130,13 +129,12 @@ class DefaultController extends Controller {
 		$cargo = $data->request->get('cargo');
 		$empresaid = $data->request->get('empresa');
 
-                 //return new Response('empresa id' . $empresaid );
+		$em = $this->getDoctrine()->getManager();
+		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findOneBy(array('id' => $empresaid));
 
-                                $em = $this->getDoctrine()->getManager();
-
-                                 $empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->findOneBy(array('id' => $empresaid));
 		//Creamos una instancia de la clase usuario.
 		$usuario = new Usuarios();
+
 		//Seteamos los valores ingresados por el usuario
 		$usuario->setPais($pais);
 		$usuario->setDetalle($detalle);
@@ -144,29 +142,15 @@ class DefaultController extends Controller {
 		$usuario->setEmail($correo);
 		$usuario->setCargo($cargo);
 		$usuario->setEmpresa($empresa);
-                                $usuario->setFecha(new \DateTime());
-
-
-
-
-
-
-
-
-
-
+		$usuario->setFecha(new \DateTime());
 
 		//coneccion a la base de datos para ingresar los datos.
-		$em = $this->getDoctrine()->getManager();
-                                $em->persist($empresa);
+
+		$em->persist($empresa);
 		$em->persist($usuario);
 		$em->flush();
+		return   $this->redirect('listarUsuarios');
 
-
-
-                               return   $this->redirect('listarUsuarios');
-
-		return new response('Datos guardados');
 	}
 
 	/* Mostrar usuarios de la base de datos */
@@ -227,7 +211,7 @@ class DefaultController extends Controller {
 		return $this->render('TheClickCmsAdminBundle:Default:listarEmpresa.html.twig', array('empresa'=>$empresa));
 	}
 
-	/* Controlador para cargar la vista editar empresa */
+	/* Controlador para cargar la editar empresa */
 	public function vistaEditarEmpresaAction($id){
 		$em = $this->getDoctrine()->getManager();
 		$empresa = $em->getRepository('TheClickCmsAdminBundle:Empresa')->find($id);
@@ -264,5 +248,27 @@ class DefaultController extends Controller {
 		$em->remove($empresa);
 		$em->flush();
 		return new Response('Usuario Eliminado');
+	}
+	/* Controlador para la vista agregar actualizacion */
+	public function vistaAgregarActualizacionAction(){
+		return $this->render('TheClickCmsAdminBundle:Default:agregarActualizacion.html.twig');
+	}
+
+	public function guardarActualizacionAction(Request $data){
+		$detalle = $data->request->get('detalle');
+		$descripccioncorta = $data->request->get('descripcioncorta');
+		$version = $data->request->get('version');
+
+		$actualizacion = new Actualizacion();
+
+		$actualizacion->setDescripcion($detalle);
+		$actualizacion->setDescripcionCorta($descripccioncorta);
+		$actualizacion->setVersion($version);
+		$actualizacion->setFechaActualizacion(new \DateTime());
+
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($actualizacion);
+		$em->flush();
+		return new response('Actualizacion Guardada');
 	}
 }

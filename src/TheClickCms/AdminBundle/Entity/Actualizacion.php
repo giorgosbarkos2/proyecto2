@@ -22,99 +22,59 @@ class Actualizacion
     private $id;
 
 
-    
-    
-    
+
+
+
      /**
      * @var string
      *
      * @ORM\Column(name="descripcion", type="text" ,nullable=true )
      */
-    
-    
+
+
     private $descripcion;
-    
-    
+
+
       /**
      * @var string
      *
      * @ORM\Column(name="descripcionCorta", type="text" ,nullable=true )
      */
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     private $descripcionCorta;
-    
-    
-    
+
+
+
       /**
      * @var string
      *
      * @ORM\Column(name="version", type="text" ,nullable=true )
      */
-    
-    
-    
-    
+
+
+
+
     private $version;
-    
-   
-    
-    
-    
-    
+
+
+
+
+
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fechaActualizacion", type="datetime" , nullable=true )
      */
-    
+
     private $fechaActualizacion;
-    
-    
-   
-    
-    
-    
-    /**
-     * @ORM\OneToMany(targetEntity="TheClickCms\AdminBundle\Entity\Archivos", mappedBy="productos" , cascade={"remove"})
-     */
-    
-    
-    
- 
-    
-    private $archivos;
-    
-    
-    
-    
-     /**
-     * @ORM\ManyToOne(targetEntity="TheClickCms\AdminBundle\Entity\Usuarios", inversedBy="fotos")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
-     * 
-     */
-    
-    private $usuario;
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->archivos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
+
     /**
      * Get id
      *
@@ -215,61 +175,5 @@ class Actualizacion
     public function getFechaActualizacion()
     {
         return $this->fechaActualizacion;
-    }
-
-    /**
-     * Add archivos
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Archivos $archivos
-     * @return Actualizacion
-     */
-    public function addArchivo(\TheClickCms\AdminBundle\Entity\Archivos $archivos)
-    {
-        $this->archivos[] = $archivos;
-    
-        return $this;
-    }
-
-    /**
-     * Remove archivos
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Archivos $archivos
-     */
-    public function removeArchivo(\TheClickCms\AdminBundle\Entity\Archivos $archivos)
-    {
-        $this->archivos->removeElement($archivos);
-    }
-
-    /**
-     * Get archivos
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getArchivos()
-    {
-        return $this->archivos;
-    }
-
-    /**
-     * Set usuario
-     *
-     * @param \TheClickCms\AdminBundle\Entity\Usuarios $usuario
-     * @return Actualizacion
-     */
-    public function setUsuario(\TheClickCms\AdminBundle\Entity\Usuarios $usuario = null)
-    {
-        $this->usuario = $usuario;
-    
-        return $this;
-    }
-
-    /**
-     * Get usuario
-     *
-     * @return \TheClickCms\AdminBundle\Entity\Usuarios 
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
     }
 }

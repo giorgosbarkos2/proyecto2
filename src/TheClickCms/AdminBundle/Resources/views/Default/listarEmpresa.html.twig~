@@ -67,16 +67,16 @@
 						<td>{{empresa.correo}}</td>
 						<td>{{empresa.fecha | date("m/d/Y")}}</td>
 						<td><a href="vistaEditarEmpresa/{{empresa.id}}" class="btn btn-primary">Editar</a></td>
-						<td><a href="#" class="btn btn-danger">Eliminar</a></td>
+						<td><a href="eliminarEmpresa/{{empresa.id}}" class="btn btn-danger">Eliminar</a></td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	{% endblock %}
-                </section>
-            </div>
-        </section>
-        <div id="quickLaunchModal" tabindex="-1" role="dialog" class="modal fade">
-        </div>
-    </body>
+				</section>
+			</div>
+		</section>
+		<div id="quickLaunchModal" tabindex="-1" role="dialog" class="modal fade">
+		</div>
+	</body>
 </html>

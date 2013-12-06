@@ -26,8 +26,14 @@
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+
    {% include "TheClickCmsAdminBundle:Layers:menu.html.twig" %}
+
         <section class="wrapper scrollable">
+
+
+
             <section class="title-bar">
                 <div>
                     <span> Admin </span>
@@ -38,6 +44,7 @@
                             <i class="menu-state-icon icon-caret-down active"></i>
                         </a>
                         <ul>
+
                             <li><a data-toggle="modal" href="#quickLaunchModal">Menu </a></li>
                             <li><a data-toggle="modal" href="#quickLaunchModal">Menu </a></li>
                             <li><a href="javascript:;">Third Menu Item</a></li>
@@ -47,36 +54,28 @@
             </section>
             <div>
                 <section class="col-md-10" style="margin-left:5%;margin-top:2%;">
-	{% block listarempresa %}
-		<table class="table">
-			<thead>
-				<th>Pais</th>
-				<th>Nombre</th>
-				<th>Detalle</th>
-				<th>Correo</th>
-				<th>Fecha</th>
-				<th>Editar</th>
-				<th>Eliminar</th>
-			</thead>
-			<tbody>
-				{% for empresa in empresa %}
-					<tr>
-						<td>{{empresa.pais}}</td>
-						<td>{{empresa.nombre}}</td>
-						<td>{{empresa.detalle}}</td>
-						<td>{{empresa.correo}}</td>
-						<td>{{empresa.fecha | date("m/d/Y")}}</td>
-						<td><a href="vistaEditarEmpresa/{{empresa.id}}" class="btn btn-primary">Editar</a></td>
-						<td><a href="eliminarEmpresa/{{empresa.id}}" class="btn btn-danger">Eliminar</a></td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endblock %}
-				</section>
-			</div>
-		</section>
-		<div id="quickLaunchModal" tabindex="-1" role="dialog" class="modal fade">
-		</div>
-	</body>
+				{% block agregaractualizacion %}
+
+				<form action="{{path('guardarActualizacion')}}" method="POST">
+					<fieldset>
+						<legend>Agregar / Actualizaciones:</legend>
+					</fieldset>
+					<label for="detalle"> Detalle de la Actualizacion:</label>
+					<textarea name="detalle" class="form-control"></textarea>
+					<label for="descripcioncorta">Descripion Corta:</label>
+					<input type="text"name="descripcioncorta" class="form-control" />
+					<label for="version"> Version del software </label>
+					<input type="text" name="version" class="form-control" />
+					<!--
+						Seccion upload
+					-->
+				<input type="submit" value="Guardar &rarr;" class="btn btn-primary"/>
+				</form>
+				{% endblock %}
+                </section>
+            </div>
+        </section>
+        <div id="quickLaunchModal" tabindex="-1" role="dialog" class="modal fade">
+        </div>
+    </body>
 </html>
