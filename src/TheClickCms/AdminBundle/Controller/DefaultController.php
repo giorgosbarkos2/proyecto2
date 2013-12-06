@@ -279,4 +279,29 @@ class DefaultController extends Controller {
 		$actualizacion = $em->getRepository('TheClickCmsAdminBundle:Actualizacion')->findAll();
 		return $this->render('TheClickCmsAdminBundle:Default:listarActualizacion.html.twig', array('actualizacion'=>$actualizacion));
 	}
+
+	public function vistaEditarActualizacionAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$actualizacion = $em->getRepository('TheClickCmsAdminBundle:Actualizacion')->find($id);
+		return $this->render('TheClickCmsAdminBundle:Default:editarActualizacion.html.twig', array('actualizacion'=>$actualizacion));
+	}
+
+	public function guardarEditarActualizacionAction(Request $data){
+		$id = $data->request->get('id');
+		$detalle = $data->request->get('detalle');
+		$descripcioncorta = $data->request->get('descripcioncorta');
+		$version = $data->request->get('version');
+
+		$em = $this->getDoctrine()->getManager();
+		$actualizacion = $em->getRepository('TheClickCmsAdminBundle:Actualizacion')->findOneBy(array('id'=>$id));
+
+		$actualizacion->setDescripcion($detalle);
+		$actualizacion->setDescripcionCorta($descripcioncorta);
+		$actualizacion->setVersion($version);
+
+		$em->merge($actualizacion);
+		$em->flush();
+
+		return new response("Usuario Editado");
+	}
 }

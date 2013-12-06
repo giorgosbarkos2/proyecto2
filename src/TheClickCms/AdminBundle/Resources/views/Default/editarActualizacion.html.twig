@@ -55,16 +55,17 @@
             <div>
                 <section class="col-md-10" style="margin-left:5%;margin-top:2%;">
 				{% block agregaractualizacion %}
-				<form action="{{path('guardarActualizacion')}}" method="POST">
+				<form action="{{path('guardarEditarActualizacion')}}" method="POST">
 					<fieldset>
 						<legend>Agregar / Actualizaciones:</legend>
 					</fieldset>
+					<input type="hidden" name="id" value="{{actualizacion.id}}" />
 					<label for="detalle"> Detalle de la Actualizacion:</label>
-					<textarea name="detalle" class="form-control"></textarea>
+					<textarea name="detalle" class="form-control">{{actualizacion.descripcion}}</textarea>
 					<label for="descripcioncorta">Descripion Corta:</label>
-					<input type="text"name="descripcioncorta" class="form-control" />
+					<input type="text"name="descripcioncorta" value="{{actualizacion.descripcionCorta}}" class="form-control" />
 					<label for="version"> Version del software </label>
-					<input type="text" name="version" class="form-control" />
+					<input type="text" name="version" value="{{actualizacion.version}}" class="form-control" />
 					<!--
 						Seccion upload
 					-->

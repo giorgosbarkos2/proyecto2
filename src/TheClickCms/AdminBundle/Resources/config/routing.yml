@@ -82,3 +82,11 @@ guardarActualizacion:
 listarActualizacion:
     pattern: /admin/listarActualizacion
     defaults: {_controller: TheClickCmsAdminBundle:Default:listarActualizacion}
+
+vistaEditarActualizacion:
+    pattern: /admin/vistaEditarActualizacion/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:vistaEditarActualizacion}
+
+guardarEditarActualizacion:
+    pattern: /admin/guardarEditarActualizacion
+    defaults: {_controller: TheClickCmsAdminBundle:Default:guardarEditarActualizacion}
