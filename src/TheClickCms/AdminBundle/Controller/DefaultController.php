@@ -304,4 +304,12 @@ class DefaultController extends Controller {
 
 		return new response("Usuario Editado");
 	}
+
+	public function eliminarActualizacionAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$actualizacion = $em->getRepository('TheClickCmsAdminBundle:Actualizacion')->find($id);
+		$em->remove($actualizacion);
+		$em->flush();
+		return new Response('Actualizacion Eliminada');
+	}
 }

@@ -90,3 +90,7 @@ vistaEditarActualizacion:
 guardarEditarActualizacion:
     pattern: /admin/guardarEditarActualizacion
     defaults: {_controller: TheClickCmsAdminBundle:Default:guardarEditarActualizacion}
+
+eliminarActualizacion:
+    pattern: /admin/eliminarActualizacion/{id}
+    defaults: {_controller: TheClickCmsAdminBundle:Default:eliminarActualizacion}
